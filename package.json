@@ -15,7 +15,7 @@
     "start": "yarn test -- --watchAll",
     "test": "cross-env NODE_ENV=development jest",
     "cli": "cross-env NODE_ENV=development ./bin/translate-json-values",
-    "format": "prettier-eslint --write \"+(src|test)/**/*.js\"",
+    "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
     "preversion": "yarn test && yarn build"
@@ -45,7 +45,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
     "cross-env": "^4.0.0",
-    "eslint": "v4.17",
+    "eslint": "^4.18.1",
     "eslint-config-cantonjs": "^0.2.0",
     "jest": "^19.0.2",
     "prettier-eslint-cli": "^4.7.1",

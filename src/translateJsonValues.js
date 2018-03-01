@@ -9,7 +9,6 @@ export default function translateJsonValues(options = {}) {
 	const ext = extWithDot.slice(1);
 	const originalName = basename(source, extWithDot);
 
-
 	langs.map((lang) => {
 		const outputName = pattern
 			.replace('$name', originalName)
