@@ -14,7 +14,7 @@
   "scripts": {
     "start": "yarn test -- --watchAll",
     "test": "cross-env NODE_ENV=development jest",
-    "cli": "cross-env NODE_ENV=development ./bin/translate-json-values",
+    "cli": "cross-env NODE_ENV=development proxychains4 ./bin/translate-json-values",
     "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
@@ -23,7 +23,7 @@
   "author": "Cap32",
   "repository": "Cap32/translate-json-values",
   "engines": {
-    "node": ">=4"
+    "node": ">=7.6"
   },
   "keywords": [],
   "license": "MIT",
@@ -36,18 +36,19 @@
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
-    "babel-jest": "^19.0.0",
+    "babel-jest": "^22.4.1",
     "babel-plugin-transform-es2015-destructuring": "^6.19.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-es2015-parameters": "^6.18.0",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-polyfill": "^6.13.0",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-0-without-async": "^1.0.0",
     "babel-register": "^6.11.6",
     "cross-env": "^4.0.0",
     "eslint": "^4.18.1",
     "eslint-config-cantonjs": "^0.2.0",
-    "jest": "^19.0.2",
+    "jest": "^22.4.2",
     "prettier-eslint-cli": "^4.7.1",
     "rimraf": "^2.5.4"
   },
