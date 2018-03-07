@@ -4,7 +4,7 @@ import { ensureDir, readJson, outputJson } from 'fs-extra';
 
 export default async function translateJsonValues(options = {}) {
 	try {
-		const { cwd, src, output, pattern, lang: langs } = options;
+		const { cwd, src, output, pattern, lang: langs, spaces = '  ' } = options;
 		const source = resolve(cwd, src);
 		const dist = resolve(cwd, output || dirname(source));
 		const extWithDot = extname(source);
@@ -53,7 +53,7 @@ export default async function translateJsonValues(options = {}) {
 					.replace('$ext', ext);
 				const outputFile = resolve(dist, outputName);
 				const resData = await execTranslate(sourceJson, lang);
-				await outputJson(outputFile, resData, { spaces: '\t' });
+				await outputJson(outputFile, resData, { spaces });
 				res[lang] = resData;
 			}),
 		);
@@ -62,7 +62,6 @@ export default async function translateJsonValues(options = {}) {
 		return res;
 	}
 	catch (err) {
-		console.log('fork?');
 		console.error(err);
 
 		// process.exit(1);

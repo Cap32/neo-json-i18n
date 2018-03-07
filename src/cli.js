@@ -33,6 +33,12 @@ const { argv } = yargs
 			describe: 'Current working directory',
 			default: process.cwd(),
 		},
+		spaces: {
+			alias: 's',
+			type: 'string',
+			describe: 'JSON format spaces',
+			default: '  ',
+		},
 	})
 	.demandCommand(1, '<src> is required')
 	.help()
