@@ -2,7 +2,7 @@
   "name": "neo-json-i18n",
   "description": "translate json files over google translate",
   "version": "0.0.0",
-  "main": "lib/translateJsonValues",
+  "main": "lib/jsonI18n",
   "bin": {
     "neo-json-i18n": "bin/neo-json-i18n",
     "json-i18n": "bin/neo-json-i18n"
@@ -27,7 +27,13 @@
   "engines": {
     "node": ">=7.6"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "i18n",
+    "translate",
+    "json",
+    "nodejs"
+  ],
   "license": "MIT",
   "dependencies": {
     "ajv": "^6.2.1",
