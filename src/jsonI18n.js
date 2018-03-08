@@ -16,7 +16,11 @@ export default async function jsonI18n(sourceCode, options = {}) {
 			if (Array.isArray(input)) {
 				return Promise.all(input.map(traverse));
 			}
-			else if (typeof input === 'object') {
+			else if (
+				typeof input === 'object' &&
+				!(input instanceof Date) &&
+				input !== null
+			) {
 				const acc = {};
 				await Promise.all(
 					Object.keys(input).map(async (key) => {
