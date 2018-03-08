@@ -1,7 +1,7 @@
 {
   "name": "neo-json-i18n",
   "description": "Translate json files over google translate",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "lib/jsonI18n",
   "bin": {
     "neo-json-i18n": "bin/neo-json-i18n",
