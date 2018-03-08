@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "start": "yarn test --watchAll",
-    "test": "cross-env NODE_ENV=development jest",
+    "test": "cross-env NODE_ENV=development jest --coverage",
     "cli": "cross-env NODE_ENV=development node ./bin/translate-json-values",
     "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
