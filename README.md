@@ -25,42 +25,23 @@ $ npm install -g neo-json-i18n
 
 ## CLI Usage
 
-```shell
-$ neo-json-i18n <src> [options]
-```
+```txt
+neo-json-i18n <src> [options]
 
-##### Options
+Translate json files over google translate
 
-```js
-output: {
-    alias: 'o',
-    describe: 'Output directory',
-    type: 'string',
-},
-lang: {
-    alias: 'l',
-    type: 'array',
-    describe: 'Languages',
-    default: ['en'],
-},
-pattern: {
-    alias: 'p',
-    type: 'string',
-    describe: 'Output file name pattern',
-    default: '$name_$lang.$ext',
-},
-cwd: {
-    alias: 'd',
-    type: 'string',
-    describe: 'Current working directory',
-    default: process.cwd(),
-},
-spaces: {
-    alias: 's',
-    type: 'string',
-    describe: 'JSON format spaces',
-    default: '  ',
-},
+Positionals:
+  src  Source file                                            [string]
+
+Options:
+  --output, -o   Output directory                             [string]
+  --lang, -l     Languages                   [array] [default: ["en"]]
+  --pattern, -p  Output file name pattern
+                                [string] [default: "%name_%lang.%ext"]
+  --cwd, -d      Current working directory                    [string]
+  --spaces, -s   JSON format spaces           [string] [default: "  "]
+  --help         Show help                                   [boolean]
+  --version      Show version number                         [boolean]
 ```
 
 ##### Example
