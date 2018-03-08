@@ -1,10 +1,11 @@
 {
-  "name": "translate-json-values",
-  "description": "translate json values over google translate",
+  "name": "neo-json-i18n",
+  "description": "translate json files over google translate",
   "version": "0.0.0",
   "main": "lib/translateJsonValues",
   "bin": {
-    "translate-json-values": "bin/translate-json-values"
+    "neo-json-i18n": "bin/neo-json-i18n",
+    "json-i18n": "bin/neo-json-i18n"
   },
   "files": [
     "*.md",
@@ -14,14 +15,14 @@
   "scripts": {
     "start": "yarn test --watchAll",
     "test": "cross-env NODE_ENV=development jest --coverage",
-    "cli": "cross-env NODE_ENV=development node ./bin/translate-json-values",
+    "cli": "cross-env NODE_ENV=development node ./bin/neo-json-i18n",
     "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
     "preversion": "yarn test && yarn build"
   },
   "author": "Cap32",
-  "repository": "Cap32/translate-json-values",
+  "repository": "Cap32/neo-json-i18n",
   "engines": {
     "node": ">=7.6"
   },

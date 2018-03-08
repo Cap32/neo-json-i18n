@@ -1,4 +1,4 @@
-# translate-json-values
+# neo-json-i18n
 
 [WIP]
 

@@ -1,25 +1,9 @@
-import translateJsonValues from '../src/translateJsonValues';
+import jsonI18n from '../src/jsonI18n';
 
-describe('translate json values', function () {
+describe('neo json i18n', function () {
 	it('test', async () => {
-
-		// console.log('done');
-
-		console.log(
-			'typeof translateJsonValues',
-			await translateJsonValues({
-				src: 'fixtures/index.json',
-				cwd: __dirname,
-				lang: ['en'],
-				pattern: '$name_$lang.$ext',
-			}),
-		);
-
-		// const res = await translateJsonValues({ src: 'fixtures/index.json' });
-		// console.log('res', res);
-
-		// const binFile = Object.keys(bin)[0];
-		// const command = resolve(`bin/${binFile}`);
-		// console.log(execSync(`${command}`, { encoding: 'utf8' }));
+		const input = { text: '星球大战' };
+		const output = await jsonI18n(input);
+		expect(output).toEqual({ en: { text: 'Star Wars' } });
 	});
 });
