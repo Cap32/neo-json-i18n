@@ -29,7 +29,7 @@ $ npm install -g neo-json-i18n
 $ neo-json-i18n <src> [options]
 ```
 
-### Options
+##### Options
 
 ```js
 output: {
@@ -63,7 +63,7 @@ spaces: {
 },
 ```
 
-### Example
+##### Example
 
 **~/my/repo/dict.json**
 
@@ -71,8 +71,14 @@ spaces: {
 { "film": "Star Wars" }
 ```
 
-`cd ~/my/repo/` and run `neo-json-i18n dict.json --lang zh-cn`, it would create
-a `dict_zh-cn.json` file
+Open terminal, and run:
+
+```shell
+$ cd ~/my/repo/
+$ neo-json-i18n dict.json --lang zh-cn,ja
+```
+
+It would create `dict_zh-cn.json` and `dict_ja.json` file as result
 
 **~/my/repo/dict_zh-cn.json**
 
@@ -80,20 +86,24 @@ a `dict_zh-cn.json` file
 { "film": "星球大战" }
 ```
 
+**~/my/repo/dict_ja.json**
+
+```json
+{ "film": "スターウォーズ" }
+```
+
 ## Node Module API Usage
 
 ```js
 import jsonI18n from "neo-json-i18n";
 const json = { film: "Star Wars" };
-jsonI18n(json, { lang: ["zh-cn"] })
+jsonI18n(json, { lang: ["zh-cn", "ja"] })
     .then(res => console.log(res))
     .catch(err => console.error(err));
 /*
-  output: { 'zh-cn': { film: '星球大战' } }
+ * { 'zh-cn': { film: '星球大战' }, 'ja': { film: 'スターウォーズ' } }
  */
 ```
-
-output:
 
 ## License
 

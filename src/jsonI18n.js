@@ -9,7 +9,7 @@ export default async function jsonI18n(sourceCode, options = {}) {
 		throw new Error('Missing param `sourceCode`');
 	}
 
-	const { langs = ['en'] } = options;
+	const langs = options.langs || options.lang || ['en'];
 
 	const performTranslate = async function performTranslate(input, lang) {
 		const traverse = async function traverse(input) {
@@ -42,8 +42,13 @@ export default async function jsonI18n(sourceCode, options = {}) {
 
 	const input = sourceCode;
 	const res = {};
+	const languages = [].concat(langs).reduce((acc, lang) => {
+		acc.push(...lang.split(','));
+		return acc;
+	}, []);
 	await Promise.all(
-		langs.map(async (lang) => {
+		languages.map(async (lang) => {
+			lang = lang.trim();
 			res[lang] = await performTranslate(input, lang);
 		}),
 	);

@@ -19,7 +19,7 @@
     "cli": "cross-env NODE_ENV=development node ./bin/neo-json-i18n",
     "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --ignore node_modules",
     "preversion": "yarn test && yarn build"
   },
   "author": "Cap32",

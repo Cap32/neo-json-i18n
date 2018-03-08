@@ -23,6 +23,26 @@ describe('neo json i18n', function () {
 		expect(output).toEqual({ en: ['Star Wars'] });
 	});
 
+	it('should multi languages work', async () => {
+		const input = '{ "text": "星球大战" }';
+		const output = await jsonI18n(input, {
+			langs: ['en', 'ja'],
+		});
+		expect(output).toEqual({
+			en: { text: 'Star Wars' },
+			ja: { text: 'スターウォーズ' },
+		});
+	});
+
+	it('should multi languages via comma work', async () => {
+		const input = '{ "text": "星球大战" }';
+		const output = await jsonI18n(input, { lang: 'en, ja' });
+		expect(output).toEqual({
+			en: { text: 'Star Wars' },
+			ja: { text: 'スターウォーズ' },
+		});
+	});
+
 	it('should not translate date object', async () => {
 		const now = new Date();
 		const input = { now };
