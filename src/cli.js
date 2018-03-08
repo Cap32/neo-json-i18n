@@ -1,47 +1,16 @@
 import yargs from 'yargs';
-import { name, version } from '../package.json';
-import translateJsonValues from './translateJsonValues';
+import { version } from '../package.json';
+import jsonI18nFiles from './jsonI18nFiles';
+import schema from './schema';
 
+const { src, ...options } = schema.properties;
 const { argv } = yargs
 	.usage('$0 <src>', 'Translate JSON values', (yargs) => {
-		yargs.positional('src', {
-			describe: 'Source file',
-			type: 'string',
-		});
+		yargs.positional('src', src);
 	})
-	.options({
-		output: {
-			alias: 'o',
-			describe: 'Output directory',
-			type: 'string',
-		},
-		lang: {
-			alias: 'l',
-			type: 'array',
-			describe: 'Languages',
-			default: ['en'],
-		},
-		pattern: {
-			alias: 'p',
-			type: 'string',
-			describe: 'Output file name pattern',
-			default: '$name_$lang.$ext',
-		},
-		cwd: {
-			alias: 'd',
-			type: 'string',
-			describe: 'Current working directory',
-			default: process.cwd(),
-		},
-		spaces: {
-			alias: 's',
-			type: 'string',
-			describe: 'JSON format spaces',
-			default: '  ',
-		},
-	})
+	.options(options)
 	.demandCommand(1, '<src> is required')
 	.help()
 	.version(version);
 
-translateJsonValues(argv);
+jsonI18nFiles(argv);

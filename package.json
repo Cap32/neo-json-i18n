@@ -12,9 +12,9 @@
     "lib"
   ],
   "scripts": {
-    "start": "yarn test -- --watchAll",
+    "start": "yarn test --watchAll",
     "test": "cross-env NODE_ENV=development jest",
-    "cli": "cross-env NODE_ENV=development proxychains4 ./bin/translate-json-values",
+    "cli": "cross-env NODE_ENV=development node ./bin/translate-json-values",
     "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
@@ -28,6 +28,7 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
+    "ajv": "^6.2.1",
     "fs-extra": "^5.0.0",
     "google-translate-api": "^2.3.0",
     "mkdirp": "^0.5.1",
@@ -54,7 +55,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/jsonI18n.js"
     ],
     "modulePathIgnorePatterns": [
       "node_modules",
