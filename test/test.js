@@ -56,4 +56,16 @@ describe('neo json i18n', function () {
 		const output = await jsonI18n(input);
 		expect(output).toEqual({ en: { nullObject } });
 	});
+
+	it('should throw error if lang is not supported', async () => {
+		const input = '{ "text": "星球大战" }';
+		expect(jsonI18n(input, { lang: 'unknown' })).rejects.toThrowError('Error');
+	});
+
+	it('should onProgress work', async () => {
+		const input = '{ "text": "星球大战" }';
+		const onProgress = jest.fn();
+		await jsonI18n(input, { langs: ['en', 'ja'], onProgress });
+		expect(onProgress).toHaveBeenCalledTimes(2);
+	});
 });

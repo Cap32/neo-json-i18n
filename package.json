@@ -1,6 +1,6 @@
 {
   "name": "neo-json-i18n",
-  "description": "translate json files over google translate",
+  "description": "Translate json files over google translate",
   "version": "0.0.0",
   "main": "lib/jsonI18n",
   "bin": {
@@ -36,9 +36,12 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "aggregate-error": "^1.0.0",
     "ajv": "^6.2.1",
+    "chalk": "^2.3.2",
     "fs-extra": "^5.0.0",
     "google-translate-api": "^2.3.0",
+    "ms": "^2.1.1",
     "yargs": "^11.0.0"
   },
   "devDependencies": {

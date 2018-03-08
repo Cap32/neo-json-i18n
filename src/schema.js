@@ -19,7 +19,7 @@ export default {
 			alias: 'p',
 			type: 'string',
 			describe: 'Output file name pattern',
-			default: '$name_$lang.$ext',
+			default: '%name_%lang.%ext',
 		},
 		cwd: {
 			alias: 'd',
