@@ -1,5 +1,5 @@
 import { resolve, dirname, extname, basename } from 'path';
-import { ensureDir, readJson, outputJson } from 'fs-extra';
+import { ensureDir, exists, readJson, outputJson } from 'fs-extra';
 import Ajv from 'ajv';
 import schema from './schema';
 import jsonI18n from './jsonI18n';
@@ -20,6 +20,10 @@ export default async function jsonI18nFiles(options = {}) {
 
 		const { cwd, src, output, pattern, lang: langs, spaces } = options;
 		const source = resolve(cwd, src);
+		const isSourceExists = await exists(source);
+		if (!isSourceExists) {
+			throw new Error(`src ${src} NOT found`);
+		}
 		const dist = resolve(cwd, output || dirname(source));
 		const extWithDot = extname(source);
 		const ext = extWithDot.slice(1);
@@ -54,10 +58,17 @@ export default async function jsonI18nFiles(options = {}) {
 		console.log(chalk.green(`Done in ${getSpend()}`));
 	}
 	catch (err) {
-		const errorWord = `error${errors > 1 ? 's' : ''}`;
-		console.error(
-			chalk.red(`Done in ${getSpend()} with ${errors} ${errorWord} occurred.`),
-		);
+		if (errors) {
+			const errorWord = `error${errors > 1 ? 's' : ''}`;
+			console.error(
+				chalk.red(
+					`Done in ${getSpend()} with ${errors} ${errorWord} occurred.`,
+				),
+			);
+		}
+		else {
+			console.error(err.message);
+		}
 		process.exit(1);
 	}
 }
