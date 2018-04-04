@@ -1,13 +1,11 @@
 import { resolve, dirname, extname, basename } from 'path';
 import { ensureDir, exists, readJson, outputJson } from 'fs-extra';
 import Ajv from 'ajv';
-import schema from './schema';
+import schema, { DEFAULT_CONFIG_FILE } from './schema';
 import jsonI18n from './jsonI18n';
 import ms from 'ms';
 import chalk from 'chalk';
 import importFile from 'import-file';
-
-const DEFAULT_CONFIG_FILE = 'i18nconfig.json';
 
 const ajv = new Ajv({ allErrors: true });
 const validate = ajv.compile(schema);

@@ -1,3 +1,5 @@
+export const DEFAULT_CONFIG_FILE = 'i18nconfig.json';
+
 export default {
 	properties: {
 		src: {
@@ -7,7 +9,7 @@ export default {
 		config: {
 			alias: 'c',
 			type: 'string',
-			description: 'Configuration file',
+			description: `Configuration file. Defaults to "${DEFAULT_CONFIG_FILE}"`,
 		},
 		output: {
 			alias: 'o',
