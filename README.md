@@ -34,11 +34,14 @@ Positionals:
   src  Source file                                            [string]
 
 Options:
+  --config, -c   Configuration file. Defaults to "i18nconfig.json"
+                                                              [string]
   --output, -o   Output directory                             [string]
   --lang, -l     Languages                   [array] [default: ["en"]]
   --pattern, -p  Output file name pattern
                                 [string] [default: "%name_%lang.%ext"]
-  --cwd, -d      Current working directory                    [string]
+  --cwd, -d      Current working directory
+            [string] [default: "/Users/webber/www/node/neo-json-i18n"]
   --spaces, -s   JSON format spaces           [string] [default: "  "]
   --help         Show help                                   [boolean]
   --version      Show version number                         [boolean]
@@ -79,8 +82,8 @@ It would create `dict_zh-cn.json` and `dict_ja.json` file as result
 import jsonI18n from "neo-json-i18n";
 const json = { film: "Star Wars" };
 jsonI18n(json, { lang: ["zh-cn", "ja"] })
-    .then(res => console.log(res))
-    .catch(err => console.error(err));
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
 /*
  * { 'zh-cn': { film: '星球大战' }, 'ja': { film: 'スターウォーズ' } }
  */
