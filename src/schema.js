@@ -4,6 +4,11 @@ export default {
 			type: 'string',
 			description: 'Source file',
 		},
+		config: {
+			alias: 'c',
+			type: 'string',
+			description: 'Configuration file',
+		},
 		output: {
 			alias: 'o',
 			describe: 'Output directory',

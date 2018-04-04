@@ -14,15 +14,21 @@ export default async function jsonI18nFiles(options = {}) {
 	const getSpend = () => ms(Date.now() - t0);
 	let errors = 0;
 	try {
-		if (!validate(options)) {
-			throw validate.errors;
+		const { config: configFile } = options;
+		const configObj = configFile ? await readJson(configFile) : {};
+		const config = { ...options, ...configObj };
+
+		if (!validate(config)) {
+			const { message } = validate.errors[0];
+			throw new Error(message);
 		}
 
-		const { cwd, src, output, pattern, lang: langs, spaces } = options;
+		const { cwd, src, output, pattern, lang: langs, spaces } = config;
 		const source = resolve(cwd, src);
+
 		const isSourceExists = await exists(source);
 		if (!isSourceExists) {
-			throw new Error(`src ${src} NOT found`);
+			throw new Error(`src ${src} NOT found ${JSON.stringify(configObj)}`);
 		}
 		const dist = resolve(cwd, output || dirname(source));
 		const extWithDot = extname(source);
