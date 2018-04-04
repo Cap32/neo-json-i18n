@@ -14,6 +14,25 @@ export default {
 			type: 'array',
 			describe: 'Languages',
 			default: ['en'],
+			items: {
+				oneOf: [
+					{
+						type: 'object',
+					},
+					{
+						type: 'string',
+						properties: {
+							input: {
+								type: 'string',
+							},
+							output: {
+								type: 'string',
+							},
+						},
+						required: ['input', 'output'],
+					},
+				],
+			},
 		},
 		pattern: {
 			alias: 'p',

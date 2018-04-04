@@ -39,7 +39,7 @@ export default async function jsonI18nFiles(options = {}) {
 				else {
 					const outputName = pattern
 						.replace('%name', originalName)
-						.replace('%lang', lang)
+						.replace('%lang', lang.output)
 						.replace('%ext', ext);
 					const outputFile = resolve(dist, outputName);
 					await outputJson(outputFile, output, { spaces });

@@ -44,25 +44,40 @@ export default async function jsonI18n(sourceCode, options = {}) {
 
 	const input = sourceCode;
 	const res = {};
-	const languages = [].concat(langs).reduce((acc, lang) => {
-		acc.push(...lang.split(','));
-		return acc;
-	}, []);
+	const languages = []
+		.concat(langs)
+		.reduce((acc, lang) => {
+			if (typeof lang === 'string') {
+				lang = lang.split(',');
+			}
+			acc.push(...[].concat(lang));
+			return acc;
+		}, [])
+		.filter(Boolean)
+		.map((lang) => {
+			if (typeof lang === 'string') {
+				lang = { input: lang, output: lang };
+			}
+			lang.input = lang.input.trim();
+			lang.output = lang.output.trim();
+			return lang;
+		});
 	const total = languages.length;
 	const errors = [];
 
 	for (let index = 0; index < total; index++) {
-		const lang = languages[index].trim();
+		const lang = languages[index];
+		const { input: langInput, output: langOutput } = lang;
 		let output = {};
 		let error;
 		try {
-			output = await performTranslate(input, lang);
+			output = await performTranslate(input, langInput);
 		}
 		catch (err) {
 			error = err;
 			errors.push(err);
 		}
-		res[lang] = output;
+		res[langOutput] = output;
 		if (typeof onProgress === 'function') {
 			await onProgress({ index, output, lang, total, error, langs: languages });
 		}

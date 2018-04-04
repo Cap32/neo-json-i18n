@@ -43,6 +43,20 @@ describe('neo json i18n', function () {
 		});
 	});
 
+	it('should languages object work', async () => {
+		const input = '{ "text": "Star Wars" }';
+		const output = await jsonI18n(input, {
+			lang: [
+				{ input: 'zh-cn', output: 'zh_CN' },
+				{ input: 'es', output: 'es_ES' },
+			],
+		});
+		expect(output).toEqual({
+			zh_CN: { text: '星球大战' },
+			es_ES: { text: 'Guerra de las Galaxias' },
+		});
+	});
+
 	it('should not translate date object', async () => {
 		const now = new Date();
 		const input = { now };
