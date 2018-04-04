@@ -41,7 +41,7 @@ export default async function jsonI18nFiles(options = {}) {
 
 		const isSourceExists = await exists(source);
 		if (!isSourceExists) {
-			throw new Error(`src ${src} NOT found ${JSON.stringify(configObj)}`);
+			throw new Error(`src ${src} NOT found`);
 		}
 		const dist = resolve(cwd, output || dirname(source));
 		const extWithDot = extname(source);
