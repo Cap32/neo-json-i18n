@@ -3,6 +3,8 @@ import { resolve } from 'path';
 import { readJson, remove } from 'fs-extra';
 
 describe('cli', function () {
+	jest.setTimeout(20000);
+
 	afterEach(async () => {
 		await remove(resolve('test/fixtures/dist'));
 	});

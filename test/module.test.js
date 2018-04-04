@@ -1,6 +1,8 @@
 import jsonI18n from '../src/jsonI18n';
 
 describe('module', function () {
+	jest.setTimeout(20000);
+
 	it('should throw error if missing param `input`', async () => {
 		expect(jsonI18n()).rejects.toThrow();
 	});
