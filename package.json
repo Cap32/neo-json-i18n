@@ -41,6 +41,7 @@
     "chalk": "^2.3.2",
     "fs-extra": "^5.0.0",
     "google-translate-api": "^2.3.0",
+    "import-file": "^1.2.4",
     "ms": "^2.1.1",
     "yargs": "^11.0.0"
   },

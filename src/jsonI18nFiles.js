@@ -5,6 +5,9 @@ import schema from './schema';
 import jsonI18n from './jsonI18n';
 import ms from 'ms';
 import chalk from 'chalk';
+import importFile from 'import-file';
+
+const DEFAULT_CONFIG_FILE = 'i18nconfig.json';
 
 const ajv = new Ajv({ allErrors: true });
 const validate = ajv.compile(schema);
@@ -15,7 +18,19 @@ export default async function jsonI18nFiles(options = {}) {
 	let errors = 0;
 	try {
 		const { config: configFile } = options;
-		const configObj = configFile ? await readJson(configFile) : {};
+		let configObj = {};
+		const importOptions = {
+			cwd: options.cwd || process.cwd(),
+		};
+		if (configFile === undefined) {
+			try {
+				configObj = await importFile(DEFAULT_CONFIG_FILE, importOptions);
+			}
+			catch (err) {}
+		}
+		else if (configFile) {
+			configObj = await importFile(configFile, importOptions);
+		}
 		const config = { ...options, ...configObj };
 
 		if (!validate(config)) {
