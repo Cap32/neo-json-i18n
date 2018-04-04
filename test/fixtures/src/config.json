@@ -1,0 +1,6 @@
+{
+	"cwd": "test/fixtures",
+	"output": "dist",
+	"lang": [{ "input": "zh-cn", "output": "zh_CN" }],
+	"pattern": "%lang.%ext"
+}

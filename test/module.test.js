@@ -1,6 +1,6 @@
 import jsonI18n from '../src/jsonI18n';
 
-describe('neo json i18n', function () {
+describe('module', function () {
 	it('should throw error if missing param `input`', async () => {
 		expect(jsonI18n()).rejects.toThrow();
 	});
