@@ -32,6 +32,8 @@ export default async function jsonI18nFiles(options = {}) {
 		const config = { ...options, ...configObj };
 
 		if (!validate(config)) {
+
+			// TODO: should improve error message
 			const { message } = validate.errors[0];
 			throw new Error(message);
 		}
