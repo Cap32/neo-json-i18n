@@ -48,7 +48,6 @@ export default async function jsonI18nFiles(options = {}) {
 			transformOutput,
 		} = config;
 		const source = resolve(cwd, src);
-
 		const isSourceExists = await exists(source);
 		if (!isSourceExists) {
 			throw new Error(`src ${src} NOT found`);
@@ -70,35 +69,39 @@ export default async function jsonI18nFiles(options = {}) {
 					console.error(indicator, chalk.red(error.message));
 				}
 				else {
-					await Promise.all(lang.output.map(async (langOutput) => {
-						const outputName = pattern
-							.replace('%name', originalName)
-							.replace('%lang', langOutput)
-							.replace('%ext', ext);
-						const outputFile = resolve(dist, outputName);
-						let finalOutput = output;
-						if (typeof transformOutput === 'function') {
-							finalOutput = await transformOutput(output, {
-								originalName,
-								ext,
-								langOutput,
-								lang,
-								dist,
-								src,
-								cwd,
-							});
-						}
-						try {
-							finalOutput = JSON.stringify(output, null, spaces);
-						}
-						catch (err) {}
-						await writeFile(outputFile, finalOutput, 'utf8');
-						console.log(
-							indicator,
-							chalk.yellow(outputFile),
-							chalk.gray('created'),
-						);
-					}));
+					await Promise.all(
+						lang.output.map(async (langOutput) => {
+							const outputName = pattern
+								.replace('%name', originalName)
+								.replace('%lang', langOutput)
+								.replace('%ext', ext);
+							const outputFile = resolve(dist, outputName);
+							let finalOutput = output;
+							if (typeof transformOutput === 'function') {
+								finalOutput = await transformOutput(output, {
+									originalName,
+									ext,
+									langOutput,
+									lang,
+									dist,
+									src,
+									cwd,
+								});
+							}
+							if (typeof finalOutput === 'object') {
+								try {
+									finalOutput = JSON.stringify(finalOutput, null, spaces);
+								}
+								catch (err) {}
+							}
+							await writeFile(outputFile, finalOutput, 'utf8');
+							console.log(
+								indicator,
+								chalk.yellow(outputFile),
+								chalk.gray('created'),
+							);
+						}),
+					);
 				}
 			},
 		});
