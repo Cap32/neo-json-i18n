@@ -1,5 +1,5 @@
 import { resolve, dirname, extname, basename } from 'path';
-import { ensureDir, exists, readJson, outputJson } from 'fs-extra';
+import { ensureDir, exists, readJson, writeFile } from 'fs-extra';
 import Ajv from 'ajv';
 import schema, { DEFAULT_CONFIG_FILE } from './schema';
 import jsonI18n from './jsonI18n';
@@ -38,7 +38,15 @@ export default async function jsonI18nFiles(options = {}) {
 			throw new Error(message);
 		}
 
-		const { cwd, src, output, pattern, lang: langs, spaces } = config;
+		const {
+			cwd,
+			src,
+			output,
+			pattern,
+			lang: langs,
+			spaces,
+			transformOutput,
+		} = config;
 		const source = resolve(cwd, src);
 
 		const isSourceExists = await exists(source);
@@ -68,7 +76,23 @@ export default async function jsonI18nFiles(options = {}) {
 							.replace('%lang', langOutput)
 							.replace('%ext', ext);
 						const outputFile = resolve(dist, outputName);
-						await outputJson(outputFile, output, { spaces });
+						let finalOutput = output;
+						if (typeof transformOutput === 'function') {
+							finalOutput = await transformOutput(output, {
+								originalName,
+								ext,
+								langOutput,
+								lang,
+								dist,
+								src,
+								cwd,
+							});
+						}
+						try {
+							finalOutput = JSON.stringify(output, null, spaces);
+						}
+						catch (err) {}
+						await writeFile(outputFile, finalOutput, 'utf8');
 						console.log(
 							indicator,
 							chalk.yellow(outputFile),

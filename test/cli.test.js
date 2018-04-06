@@ -23,7 +23,7 @@ describe('cli', function () {
 	test('should `--config` work', async () => {
 		const src = 'src/a.json';
 		const bin = resolve('bin/neo-json-i18n');
-		execSync(`${bin} ${src} -c=test/fixtures/src/i18nconfig.json`);
+		execSync(`${bin} ${src} -c=test/fixtures/src/i18nconfig.js`);
 		const dist = resolve('test/fixtures/dist/zh_CN.json');
 		expect(await readJson(dist)).toEqual({
 			film: '星球大战',
