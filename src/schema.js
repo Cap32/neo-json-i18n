@@ -33,7 +33,17 @@ export default {
 								type: 'string',
 							},
 							output: {
-								type: 'string',
+								oneOf: [
+									{
+										type: 'string',
+									},
+									{
+										type: 'array',
+										items: {
+											type: 'string',
+										},
+									},
+								],
 							},
 						},
 						required: ['input', 'output'],

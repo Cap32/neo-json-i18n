@@ -62,17 +62,19 @@ export default async function jsonI18nFiles(options = {}) {
 					console.error(indicator, chalk.red(error.message));
 				}
 				else {
-					const outputName = pattern
-						.replace('%name', originalName)
-						.replace('%lang', lang.output)
-						.replace('%ext', ext);
-					const outputFile = resolve(dist, outputName);
-					await outputJson(outputFile, output, { spaces });
-					console.log(
-						indicator,
-						chalk.yellow(outputFile),
-						chalk.gray('created'),
-					);
+					await Promise.all(lang.output.map(async (langOutput) => {
+						const outputName = pattern
+							.replace('%name', originalName)
+							.replace('%lang', langOutput)
+							.replace('%ext', ext);
+						const outputFile = resolve(dist, outputName);
+						await outputJson(outputFile, output, { spaces });
+						console.log(
+							indicator,
+							chalk.yellow(outputFile),
+							chalk.gray('created'),
+						);
+					}));
 				}
 			},
 		});
