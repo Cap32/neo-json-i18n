@@ -56,10 +56,13 @@ export default async function jsonI18n(sourceCode, options = {}) {
 		.filter(Boolean)
 		.map((lang) => {
 			if (typeof lang === 'string') {
-				lang = { input: lang, output: lang };
+				lang = { input: lang, output: [lang] };
+			}
+			if (!Array.isArray(lang.output)) {
+				lang.output = [lang.output];
 			}
 			lang.input = lang.input.trim();
-			lang.output = lang.output.trim();
+			lang.output = lang.output.map((o) => o.trim());
 			return lang;
 		});
 	const total = languages.length;
@@ -67,7 +70,7 @@ export default async function jsonI18n(sourceCode, options = {}) {
 
 	for (let index = 0; index < total; index++) {
 		const lang = languages[index];
-		const { input: langInput, output: langOutput } = lang;
+		const { input: langInput, output: langOutputs } = lang;
 		let output = {};
 		let error;
 		try {
@@ -77,7 +80,9 @@ export default async function jsonI18n(sourceCode, options = {}) {
 			error = err;
 			errors.push(err);
 		}
-		res[langOutput] = output;
+		langOutputs.forEach((lang) => {
+			res[lang] = output;
+		});
 		if (typeof onProgress === 'function') {
 			await onProgress({ index, output, lang, total, error, langs: languages });
 		}
