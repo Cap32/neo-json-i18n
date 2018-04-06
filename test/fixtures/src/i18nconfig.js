@@ -4,7 +4,10 @@ module.exports = {
 	lang: [{ input: 'zh-cn', output: 'zh_CN' }],
 	pattern: '%lang.%ext',
 	transformOutput(output, options) {
-		console.log('transformOutput', output, options);
-		return output;
-	}
+		const res = {
+			lang: options.langOutput,
+			data: output,
+		};
+		return res;
+	},
 };

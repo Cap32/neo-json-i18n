@@ -26,7 +26,8 @@ describe('cli', function () {
 		execSync(`${bin} ${src} -c=test/fixtures/src/i18nconfig.js`);
 		const dist = resolve('test/fixtures/dist/zh_CN.json');
 		expect(await readJson(dist)).toEqual({
-			film: '星球大战',
+			lang: 'zh_CN',
+			data: { film: '星球大战' },
 		});
 	});
 });
