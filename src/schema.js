@@ -24,10 +24,10 @@ export default {
 			items: {
 				oneOf: [
 					{
-						type: 'object',
+						type: 'string',
 					},
 					{
-						type: 'string',
+						type: 'object',
 						properties: {
 							input: {
 								type: 'string',
