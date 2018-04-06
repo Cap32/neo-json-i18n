@@ -59,6 +59,17 @@ describe('module', function () {
 		});
 	});
 
+	it('should lang.output array work', async () => {
+		const input = '{ "text": "星球大战" }';
+		const output = await jsonI18n(input, {
+			lang: { input: 'en', output: ['en_UK', 'en_US'] },
+		});
+		expect(output).toEqual({
+			en_UK: { text: 'Star Wars' },
+			en_US: { text: 'Star Wars' },
+		});
+	});
+
 	it('should not translate date object', async () => {
 		const now = new Date();
 		const input = { now };
