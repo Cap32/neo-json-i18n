@@ -59,6 +59,22 @@ describe('module', function () {
 		});
 	});
 
+	it('should lang.dict work', async () => {
+		const input = '{ "text": "Star Wars", "foo": "bar" }';
+		const output = await jsonI18n(input, {
+			lang: {
+				input: 'zh-cn',
+				output: 'zh_CN',
+				dict: {
+					foo: 'baz',
+				},
+			},
+		});
+		expect(output).toEqual({
+			zh_CN: { text: '星球大战', foo: 'baz' },
+		});
+	});
+
 	it('should lang.output array work', async () => {
 		const input = '{ "text": "星球大战" }';
 		const output = await jsonI18n(input, {
