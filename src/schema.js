@@ -45,6 +45,9 @@ export default {
 									},
 								],
 							},
+							dict: {
+								type: 'object',
+							},
 						},
 						required: ['input', 'output'],
 					},

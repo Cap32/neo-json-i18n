@@ -13,7 +13,7 @@ export default async function jsonI18n(sourceCode, options = {}) {
 	const langs = options.langs || options.lang || ['en'];
 	const { onProgress } = options;
 
-	const performTranslate = async function performTranslate(input, lang) {
+	const performTranslate = async function performTranslate(input, lang, dict) {
 		const traverse = async function traverse(input) {
 			if (Array.isArray(input)) {
 				return Promise.all(input.map(traverse));
@@ -32,7 +32,13 @@ export default async function jsonI18n(sourceCode, options = {}) {
 				return acc;
 			}
 			else if (typeof input === 'string') {
-				const res = await translate(input, { to: lang });
+				let res;
+				if (dict[input]) {
+					res = { text: dict[input] };
+				}
+				else {
+					res = await translate(input, { to: lang });
+				}
 				return res.text;
 			}
 			else {
@@ -70,11 +76,11 @@ export default async function jsonI18n(sourceCode, options = {}) {
 
 	for (let index = 0; index < total; index++) {
 		const lang = languages[index];
-		const { input: langInput, output: langOutputs } = lang;
+		const { input: langInput, output: langOutputs, dict = {} } = lang;
 		let output = {};
 		let error;
 		try {
-			output = await performTranslate(input, langInput);
+			output = await performTranslate(input, langInput, dict);
 		}
 		catch (err) {
 			error = err;
