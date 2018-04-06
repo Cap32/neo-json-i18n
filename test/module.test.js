@@ -66,12 +66,12 @@ describe('module', function () {
 				input: 'zh-cn',
 				output: 'zh_CN',
 				dict: {
-					foo: 'baz',
+					bar: '吧',
 				},
 			},
 		});
 		expect(output).toEqual({
-			zh_CN: { text: '星球大战', foo: 'baz' },
+			zh_CN: { text: '星球大战', foo: '吧' },
 		});
 	});
 
