@@ -1,77 +1,62 @@
 {
-  "name": "neo-json-i18n",
-  "description": "Translate json files over google translate",
-  "version": "2.0.1",
-  "main": "lib/jsonI18n",
-  "bin": {
-    "neo-json-i18n": "bin/neo-json-i18n",
-    "json-i18n": "bin/neo-json-i18n"
-  },
-  "files": [
-    "*.md",
-    "bin",
-    "lib"
-  ],
-  "scripts": {
-    "start": "yarn test --watchAll",
-    "test": "cross-env NODE_ENV=development jest --coverage",
-    "coverage": "cat ./coverage/lcov.info | coveralls",
-    "cli": "cross-env NODE_ENV=development node ./bin/neo-json-i18n",
-    "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
-    "prebuild": "rimraf lib",
-    "build": "babel src -d lib --ignore node_modules",
-    "preversion": "yarn test && yarn build"
-  },
-  "author": "Cap32",
-  "repository": "Cap32/neo-json-i18n",
-  "engines": {
-    "node": ">=7.6"
-  },
-  "keywords": [
-    "cli",
-    "i18n",
-    "translate",
-    "json",
-    "nodejs"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "aggregate-error": "^1.0.0",
-    "ajv": "^6.2.1",
-    "chalk": "^2.3.2",
-    "fs-extra": "^5.0.0",
-    "google-translate-api": "^2.3.0",
-    "import-file": "^1.2.4",
-    "ms": "^2.1.1",
-    "yargs": "^11.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.13.2",
-    "babel-jest": "^22.4.1",
-    "babel-plugin-transform-es2015-destructuring": "^6.19.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-es2015-parameters": "^6.18.0",
-    "babel-plugin-transform-es2015-spread": "^6.22.0",
-    "babel-polyfill": "^6.13.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-stage-0-without-async": "^1.0.0",
-    "babel-register": "^6.11.6",
-    "coveralls": "^3.0.0",
-    "cross-env": "^4.0.0",
-    "eslint": "^4.18.1",
-    "eslint-config-cantonjs": "^0.2.0",
-    "jest": "^22.4.2",
-    "prettier-eslint-cli": "^4.7.1",
-    "rimraf": "^2.5.4"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/jsonI18n.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "node_modules",
-      "lib"
-    ]
-  }
+	"name": "neo-json-i18n",
+	"description": "Translate json files over google translate",
+	"version": "2.0.1",
+	"main": "lib/jsonI18n",
+	"bin": {
+		"neo-json-i18n": "bin/neo-json-i18n",
+		"json-i18n": "bin/neo-json-i18n"
+	},
+	"files": ["*.md", "bin", "lib"],
+	"scripts": {
+		"start": "yarn test --watchAll",
+		"test": "cross-env NODE_ENV=development jest --coverage",
+		"coverage": "cat ./coverage/lcov.info | coveralls",
+		"cli": "cross-env NODE_ENV=development node ./bin/neo-json-i18n",
+		"prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
+		"prebuild": "rimraf lib",
+		"build": "babel src -d lib --ignore node_modules",
+		"preversion": "yarn test && yarn build"
+	},
+	"author": "Cap32 <webb.png@gmail.com>",
+	"repository": "Cap32/neo-json-i18n",
+	"engines": {
+		"node": ">=7.6"
+	},
+	"keywords": ["cli", "i18n", "translate", "json", "nodejs"],
+	"license": "MIT",
+	"dependencies": {
+		"aggregate-error": "^1.0.0",
+		"ajv": "^6.2.1",
+		"chalk": "^2.3.2",
+		"fs-extra": "^5.0.0",
+		"google-translate-api": "^2.3.0",
+		"import-file": "^1.2.4",
+		"ms": "^2.1.1",
+		"yargs": "^11.0.0"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.13.2",
+		"babel-jest": "^22.4.1",
+		"babel-plugin-transform-es2015-destructuring": "^6.19.0",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+		"babel-plugin-transform-es2015-parameters": "^6.18.0",
+		"babel-plugin-transform-es2015-spread": "^6.22.0",
+		"babel-polyfill": "^6.13.0",
+		"babel-preset-stage-0": "^6.5.0",
+		"babel-preset-stage-0-without-async": "^1.0.0",
+		"babel-register": "^6.11.6",
+		"coveralls": "^3.0.0",
+		"cross-env": "^4.0.0",
+		"eslint": "^4.18.1",
+		"eslint-config-cantonjs": "^0.2.0",
+		"jest": "^22.4.2",
+		"prettier-eslint-cli": "^4.7.1",
+		"rimraf": "^2.5.4"
+	},
+	"jest": {
+		"collectCoverageFrom": ["src/jsonI18n.js"],
+		"modulePathIgnorePatterns": ["node_modules", "lib"]
+	}
 }
