@@ -11,9 +11,14 @@ export default async function jsonI18n(sourceCode, options = {}) {
 	}
 
 	const langs = options.langs || options.lang || ['en'];
-	const { onProgress } = options;
+	const { onProgress, srcLang = 'auto' } = options;
 
-	const performTranslate = async function performTranslate(input, lang, dict) {
+	const performTranslate = async function performTranslate({
+		input,
+		lang,
+		dict,
+		srcLang,
+	}) {
 		const traverse = async function traverse(input) {
 			if (Array.isArray(input)) {
 				return Promise.all(input.map(traverse));
@@ -37,7 +42,7 @@ export default async function jsonI18n(sourceCode, options = {}) {
 					res = { text: dict[input] };
 				}
 				else {
-					res = await translate(input, { to: lang });
+					res = await translate(input, { from: srcLang, to: lang });
 				}
 				return res.text;
 			}
@@ -80,7 +85,12 @@ export default async function jsonI18n(sourceCode, options = {}) {
 		let output = {};
 		let error;
 		try {
-			output = await performTranslate(input, langInput, dict);
+			output = await performTranslate({
+				input,
+				lang: langInput,
+				dict,
+				srcLang,
+			});
 		}
 		catch (err) {
 			error = err;

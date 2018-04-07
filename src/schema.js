@@ -16,10 +16,16 @@ export default {
 			describe: 'Output directory',
 			type: 'string',
 		},
+		srcLang: {
+			alias: 'L',
+			type: 'string',
+			describe: 'Src language',
+			default: 'auto',
+		},
 		lang: {
 			alias: 'l',
 			type: 'array',
-			describe: 'Languages',
+			describe: 'Target languages',
 			default: ['en'],
 			items: {
 				oneOf: [

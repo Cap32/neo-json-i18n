@@ -7,21 +7,27 @@ describe('module', function () {
 		expect(jsonI18n()).rejects.toThrow();
 	});
 
-	it('should object work', async () => {
+	it('should input object work', async () => {
 		const input = { text: '星球大战' };
 		const output = await jsonI18n(input);
 		expect(output).toEqual({ en: { text: 'Star Wars' } });
 	});
 
-	it('should string work', async () => {
+	it('should input string work', async () => {
 		const input = '{ "text": "星球大战" }';
 		const output = await jsonI18n(input);
 		expect(output).toEqual({ en: { text: 'Star Wars' } });
 	});
 
-	it('should array work', async () => {
+	it('should input array work', async () => {
 		const input = ['星球大战'];
 		const output = await jsonI18n(input);
+		expect(output).toEqual({ en: ['Star Wars'] });
+	});
+
+	it('should `srcLang` work', async () => {
+		const input = ['星球大战'];
+		const output = await jsonI18n(input, { srcLang: 'zh-cn' });
 		expect(output).toEqual({ en: ['Star Wars'] });
 	});
 
