@@ -37,7 +37,8 @@ Options:
   --config, -c   Configuration file. Defaults to "i18nconfig.json"
                                                               [string]
   --output, -o   Output directory                             [string]
-  --lang, -l     Languages                   [array] [default: ["en"]]
+  --srcLang, -L  Src language               [string] [default: "auto"]
+  --lang, -l     Target languages            [array] [default: ["en"]]
   --pattern, -p  Output file name pattern
                                 [string] [default: "%name_%lang.%ext"]
   --cwd, -d      Current working directory
@@ -47,7 +48,15 @@ Options:
   --version      Show version number                         [boolean]
 ```
 
-##### Example
+#### Notes
+
+* `pattern` supports these placeholders:
+  * `%name`: file base name
+  * `%lang`: output language
+  * `%ext`: file extension name
+* Language supports: [plesase checkout here](/Languages.md)
+
+#### Example
 
 **~/my/repo/dict.json**
 
